@@ -15,9 +15,6 @@ if(WIN32)
 
     # Enable math constants like M_PI
     add_compile_definitions(_USE_MATH_DEFINES)
-
-    # Use Unicode
-    add_compile_definitions(UNICODE _UNICODE)
 endif()
 
 # Set installation directory

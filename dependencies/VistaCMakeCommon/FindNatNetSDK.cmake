@@ -27,12 +27,12 @@ if(WIN32)
     endif()
 
     find_library(NatNetSDK_LIBRARY
-        NAMES NatNet NatNetLib
+        NAMES NatNetLibStatic NatNetLib NatNet
         PATHS
-            ${NatNetSDK_ROOT_DIR}/lib
             ${NatNetSDK_ROOT_DIR}/lib/${NATNET_LIB_SUFFIX}
-            ${NatNetSDK_DIR}/lib
+            ${NatNetSDK_ROOT_DIR}/lib
             ${NatNetSDK_DIR}/lib/${NATNET_LIB_SUFFIX}
+            ${NatNetSDK_DIR}/lib
         NO_DEFAULT_PATH
     )
 
