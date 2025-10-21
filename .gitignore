@@ -1,0 +1,42 @@
+# Build outputs
+build/
+dist/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake.rule
+*.ninja
+*.vcxproj.FileListAbsolute.txt
+
+# Compiled files
+*.dll
+*.exe
+*.lib
+*.obj
+*.pdb
+*.exp
+*.ilk
+*.mexw64
+
+# Dependencies (will be downloaded)
+dependencies/downloads/
+dependencies/temp/
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+~*
