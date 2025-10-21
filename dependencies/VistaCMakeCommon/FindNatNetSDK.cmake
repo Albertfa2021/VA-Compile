@@ -42,6 +42,15 @@ if(WIN32)
         set(NatNetSDK_LIBRARIES ${NatNetSDK_LIBRARY})
         get_filename_component(NatNetSDK_LIBRARY_DIRS ${NatNetSDK_LIBRARY} DIRECTORY)
 
+        # Create imported target
+        if(NOT TARGET NatNetSDK::NatNetSDK)
+            add_library(NatNetSDK::NatNetSDK UNKNOWN IMPORTED)
+            set_target_properties(NatNetSDK::NatNetSDK PROPERTIES
+                IMPORTED_LOCATION "${NatNetSDK_LIBRARY}"
+                INTERFACE_INCLUDE_DIRECTORIES "${NatNetSDK_INCLUDE_DIR}"
+            )
+        endif()
+
         if(NOT NatNetSDK_FIND_QUIETLY)
             message(STATUS "Found NatNetSDK: ${NatNetSDK_LIBRARY}")
         endif()
