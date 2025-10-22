@@ -1,4 +1,12 @@
-# Build outputs
+# ============================================
+# VA2022a Ready-to-Build Version
+# 这个.gitignore配置为"拿来即用"：
+# - 提交已修复的source/源码
+# - 提交必需的dependencies/
+# - 忽略编译中间文件和输出
+# ============================================
+
+# Build outputs (每次编译重新生成)
 build/
 dist/
 
@@ -6,11 +14,11 @@ dist/
 .vs/
 *.user
 *.suo
+
+# CMake生成的项目文件（每次configure重新生成）
 *.sln
 *.vcxproj
 *.vcxproj.filters
-
-# CMake
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
@@ -18,7 +26,7 @@ cmake_install.cmake
 *.ninja
 *.vcxproj.FileListAbsolute.txt
 
-# Compiled files
+# 编译产物（每次build重新生成）
 *.dll
 *.exe
 *.lib
@@ -27,16 +35,33 @@ cmake_install.cmake
 *.exp
 *.ilk
 *.mexw64
+*.so
+*.dylib
+*.a
 
-# Dependencies (will be downloaded)
+# 依赖下载缓存（CMake自动下载）
 dependencies/downloads/
 dependencies/temp/
 
-# IDE
+# IDE配置
 .vscode/
 .idea/
 
-# Temporary files
+# 临时文件
 *.log
 *.tmp
 ~*
+*.swp
+*.swo
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# ============================================
+# 重要提示：
+# - source/ 已包含所有修复，可直接提交
+# - dependencies/VistaCMakeCommon/ 必须提交
+# - dependencies/NatNetSDK/ 必须提交
+# ============================================
