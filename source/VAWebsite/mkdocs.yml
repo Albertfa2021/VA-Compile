@@ -1,0 +1,106 @@
+site_name: Virtual Acoustics
+
+theme:
+  name: material
+  custom_dir: overrides/
+  logo: assets/images/VA_favicon.svg
+  favicon: assets/images/VA_favicon.svg
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+
+  palette: 
+    - scheme: oldVA
+        
+nav:
+    - index.md
+    - VA:
+        - VA/index.md
+        - Overview: VA/overview.md
+        - Documentation:
+            - Overview: VA/documentation/index.md
+            - VA configuration: VA/documentation/configuration.md
+            - Rendering classes: VA/documentation/rendering.md
+            - Reproduction classes: VA/documentation/reproduction.md
+            - Controlling VA: VA/documentation/control.md
+            - Scene handling: VA/documentation/scene.md
+            - Recording: VA/documentation/recording.md
+        - Download: VA/download.md
+        - Support: VA/support.md
+        - Research: VA/research.md
+        - Markdown Examples: VA/videos.md
+    - ITAGeometricalAcoustics:
+        - GA/index.md
+        - GA/art.md
+        - GA/iem.md
+    - RAVEN:
+        - RAVEN/index.md
+    - ITASimulationScheduler:
+        - ITASimulationScheduler/index.md
+    - Downloads:
+      - downloads.md
+      - Virtual Acoustics (VA): VA/download
+      - ARTMatlab: GA/art/#download
+      - Pigeon: GA/iem/#download
+      - RAVEN: RAVEN/#access
+    - Developers: developer.md
+    - Legal notice: legal.md
+    
+
+copyright: Copyright &copy; 2017-2022 Institute for Hearing Technology and Acoustics (IHTA), RWTH Aachen University
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/solid/globe
+      link: http://www.akustik.rwth-aachen.de
+      name: IHTA website
+    - icon: fontawesome/solid/comments
+      link: http://blog.rwth-aachen.de/akustik/category/va
+      name: IHTA blog
+    - icon: fontawesome/brands/gitlab
+      link: http://git.rwth-aachen.de/ita
+      name: IHTA gitlab repositories
+
+markdown_extensions:
+  - meta
+  - attr_list
+  - md_in_html
+  - abbr
+  - admonition
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      options:
+        custom_icons:
+          - overrides/assets/images
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+extra_css:
+  - stylesheets/test.css
+
+plugins:
+  - search
+  - mkdocs-video:
+      css_style:
+        width: "100%"
+        aspect-ratio: "16/9"
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true

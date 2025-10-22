@@ -1,0 +1,11 @@
+target_sources (${PROJECT_NAME} PRIVATE VAAudioRenderer.h VAAudioRendererRegistry.cpp VAAudioRendererRegistry.h)
+
+add_subdirectory (Base)
+add_subdirectory (Freefield)
+add_subdirectory (AirTrafficNoise)
+add_subdirectory (Ambient/Mixer)
+add_subdirectory (Ambisonics/Freefield)
+add_subdirectory (Binaural)
+add_subdirectory (Prototyping)
+add_subdirectory (RoomAcoustics)
+add_subdirectory (VBAP)

@@ -1,0 +1,182 @@
+{
+	"Variables" : {
+		"ProjectFilePath" : "..\/RavenProjects\/TestShoeboxRoom\/TestShoeboxRoom.rpf"
+	},
+
+	"@ReplaceUpdates" : true,
+
+	"DDScheduler" : {
+
+		"@ReplaceUpdates" : true,
+
+		"@Type" : "LocalScheduler",
+
+		"FilterNetwork" : {
+
+			"@StartFilter" : "FilterZero",
+
+			"Filter0" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterZero",
+
+				"@NextFilter" : "FilterOne",
+
+				"@Threshold" : 0.5,
+
+				"@TranslationMode" : 1,
+
+				"@Type" : "TranslationFilter",
+
+				"@UsageMode" : 0
+
+			},
+
+			"Filter1" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterOne",
+
+				"@NextFilter" : "",
+
+				"@Rate" : 0.5,
+
+				"@Type" : "RateFilter",
+
+				"@UsageMode" : 0
+
+			}
+
+		},
+
+		"Worker0" : {
+
+			"@FieldOfDuty" : 0,
+
+			"@RavenProjectFilePath" : "${ProjectFilePath}",
+
+			"@Type" : "RavenWorkerThread"
+
+		}
+
+	},
+
+	"DSScheduler" : {
+
+		"@ReplaceUpdates" : true,
+
+		"@Type" : "LocalScheduler",
+
+		"FilterNetwork" : {
+
+			"@StartFilter" : "FilterZero",
+
+			"Filter0" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterZero",
+
+				"@NextFilter" : "FilterOne",
+
+				"@Threshold" : 0.5,
+
+				"@TranslationMode" : 1,
+
+				"@Type" : "TranslationFilter",
+
+				"@UsageMode" : 0
+
+			},
+
+			"Filter1" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterOne",
+
+				"@NextFilter" : "",
+
+				"@Rate" : 0.5,
+
+				"@Type" : "RateFilter",
+
+				"@UsageMode" : 0
+
+			}
+
+		},
+
+		"Worker0" : {
+
+			"@FieldOfDuty" : 0,
+
+			"@RavenProjectFilePath" : "${ProjectFilePath}",
+
+			"@Type" : "RavenWorkerThread"
+
+		}
+
+	},
+
+	"ERScheduler" : {
+
+		"@ReplaceUpdates" : true,
+
+		"@Type" : "LocalScheduler",
+
+		"FilterNetwork" : {
+
+			"@StartFilter" : "FilterZero",
+
+			"Filter0" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterZero",
+
+				"@NextFilter" : "FilterOne",
+
+				"@Threshold" : 0.5,
+
+				"@TranslationMode" : 1,
+
+				"@Type" : "TranslationFilter",
+
+				"@UsageMode" : 0
+
+			},
+
+			"Filter1" : {
+
+				"@InvertCondition" : false,
+
+				"@Name" : "FilterOne",
+
+				"@NextFilter" : "",
+
+				"@Rate" : 0.5,
+
+				"@Type" : "RateFilter",
+
+				"@UsageMode" : 0
+
+			}
+
+		},
+
+		"Worker0" : {
+
+			"@FieldOfDuty" : 0,
+
+			"@RavenProjectFilePath" : "${ProjectFilePath}",
+
+			"@Type" : "RavenWorkerThread"
+
+		}
+
+	}
+
+}

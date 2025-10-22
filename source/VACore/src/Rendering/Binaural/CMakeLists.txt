@@ -1,0 +1,5 @@
+add_subdirectory (AirTrafficNoise)
+add_subdirectory (ArtificialReverb)
+add_subdirectory (Clustering)
+add_subdirectory (FreeField)
+add_subdirectory (OutdoorNoise)

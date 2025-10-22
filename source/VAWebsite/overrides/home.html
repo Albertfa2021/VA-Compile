@@ -1,0 +1,72 @@
+{% extends "main.html" %}
+{% block hero %}
+
+<div class="md-main md-main__inner md-grid">
+    <div class="md-content md-content__inner md-typeset grid-container "
+        style="flex-direction: column; align-items: flex-start;padding: 0 3rem;row-gap: 5rem;">
+        <div class="grid-container grid-container-padding">
+            <a href="{{ 'VA/' | url }}">
+                <span style="stroke: var(--md-typeset-color);fill: var(--md-typeset-color);">
+                    {% include "/assets/images/VA.svg" %}
+                </span>
+            </a>
+            <div style="text-align: center;">
+                <h1>Virtual Acoustics (VA)</h1>
+                <p>Auralization framework</p>
+
+                <a href="{{ 'VA/' | url }}" title="{{ 'GeometicalAcoustics' | e }}" class="md-button md-button--primary"
+                    style="min-width: 100%; text-align: center;">
+                    Virtual Acosutics
+                </a>
+            </div>
+        </div>
+        <div class="grid-container" style="flex-direction: row; row-gap: 5rem; column-gap: 10rem;align-items: start;">
+            <div class="grid-container">
+                <a href="{{ 'RAVEN/' | url }}">
+                    <span style="stroke: var(--md-typeset-color);fill: var(--md-typeset-color);">
+                        {% include "/assets/images/RAVEN.svg" %}
+                    </span>
+                </a>
+                <div style="text-align: center;">
+                    <h1>RAVEN</h1>
+                    <p>Room acoustic simulation</p>
+    
+                    <a href="{{ 'RAVEN/' | url }}" title="{{ 'GeometicalAcoustics' | e }}"
+                        class="md-button md-button--primary" style="min-width: 100%; text-align: center;">
+                        RAVEN
+                    </a>
+                </div>
+            </div>
+            <div class="grid-container">
+                <a href="{{ 'GA/' | url }}">
+                    <span style="stroke: var(--md-typeset-color);fill: var(--md-typeset-color);">
+                        {% include "/assets/images/GA.svg" %}
+                    </span></a>
+
+                <div style="text-align: center;">
+                    <h1>ITAGeometricalAcoustics</h1>
+                    <p>Outdoor sound propagation</p>
+
+                    <a href="{{ 'GA/' | url }}" title="{{ 'GeometicalAcoustics' | e }}"
+                        class="md-button md-button--primary" style="min-width: 100%; text-align: center;">
+                        Geometical Acoustics
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bkg-svg-container">
+    <svg height="100%" width="100%" id="paths" style="pointer-events: none;stroke:var(--md-typeset-color);fill:none;stroke-width:20;stroke-linejoin: round;">
+    </svg>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="/assets/javascripts/path-creator.js"></script>
+
+
+
+{% endblock %}
+{% block content %}
+{% endblock %}

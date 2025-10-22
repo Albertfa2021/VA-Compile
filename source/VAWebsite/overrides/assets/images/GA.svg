@@ -1,0 +1,13 @@
+<svg id="GA" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
+   <circle r="147" cx="0" cy="0" style="stroke-width:5;fill:none;" id="circle2" />
+   <g transform="translate(435.37375,614.5985)" id="g7">
+      <path
+         d="m -492.82599,-738.10342 -51.23287,103.62668 12.86137,26.20239 37.88268,77.18077 48.54834,-98.19852 c -17.35087,-8.119 -22.82025,-9.34296 -22.82025,-9.34296 0,0 -17.23706,-5.19156 -27.24787,2.3053 10.59891,2.39625 18.39994,5.71074 24.10584,9.06554 l -22.58606,48.15673 -25.64399,-55.29417 13.55531,-28.88305 12.5775,-26.80481 11.51915,-24.54711 z"
+         style="fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path3" />
+      <path
+         d="m -326.68864,-531.09389 -67.58609,-137.69426 -68.0758,137.69426 h 26.0144 l 42.0614,-89.68072 25.2392,51.45609 c 0,0 -17.237,-5.19295 -27.2478,2.3039 31.7915,7.18761 38.5132,22.64123 38.5132,22.64123 l 7.4186,13.2795 z"
+         style="fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path5" />
+   </g>
+</svg>

@@ -1,0 +1,1 @@
+target_sources (${PROJECT_NAME} PRIVATE VAAudioRendererBase.cpp VAAudioRendererBase.h VAAudioRendererMovingObject.cpp VAAudioRendererMovingObject.h VAAudioRendererReceiver.h VAAudioRendererSource.h VAAudioRendererSourceDirectivityState.h VAFIRRendererBase.cpp VAFIRRendererBase.h VASoundPathRendererBase.cpp VASoundPathRendererBase.h)

@@ -1,0 +1,8 @@
+int GetState() const;
+void Initialize();
+void Finalize();
+void Reset();
+
+# Directivities
+int LoadDirectivity(const std::string sFilename, const std::string sName="")=0;
+bool FreeDirectivity(int iDirID);

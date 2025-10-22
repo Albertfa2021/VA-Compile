@@ -1,0 +1,5 @@
+add_subdirectory (Dummy)
+add_subdirectory (GenericPath)
+add_subdirectory (HearingAid)
+add_subdirectory (FreeField)
+add_subdirectory (ImageSource)

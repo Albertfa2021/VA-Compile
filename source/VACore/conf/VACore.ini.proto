@@ -1,0 +1,473 @@
+#
+#  -------------------------------------------------------------------------------------------
+#
+#    VVV        VVV A
+#     VVV      VVV AAA        Virtual Acoustics (VA)
+#      VVV    VVV   AAA       Real-time auralization for virtual reality    
+#       VVV  VVV     AAA
+#        VVVVVV       AAA     (c) Copyright Institute of Technical Acoustics (ITA)
+#         VVVV         AAA        RWTH Aachen University (http://www.akustik.rwth-aachen.de)
+#
+#  -------------------------------------------------------------------------------------------
+#
+#  WARNING: This configuration file for the VACore has been automatically created by CMake.
+# 			You can move this file and change the argument path accordingly, otherwise
+#			your changes will be overwritten. Alternatively, you can directly modify  
+#			the prototype file 'VACore.ini.proto' and re-run CMake.
+#
+
+
+[Paths]
+
+# Any entry value will be added to the search path list, but only if existing! They will also be made available as macros (see below).
+# If a file can not be found during runtime by local name, the core will try to locate it using the paths in ascending name order.
+# Macros are not substituted, here. However, it is recommended to use AddSearchPath during runtime, if you have individual directories
+# you want to add.
+
+# Relative configuration path (with some more hardware setup files)
+conf_dir = conf
+
+# Relative data path (with some common files)
+data_dir = data
+
+# Path for TTS Voices of CereVoice
+voices_dir = data/Voices
+
+@ITA_VACORE_DEVELOPMENT_PATHS@
+
+[Files]
+
+# List further config files to be appended to this configuration (also looking at paths)
+
+#VRLabSetup = VASetup.VRLab.ini
+VASetupHOAIdeal = VASetup.HOAIdeal.ini
+
+
+[Macros]
+
+# Macros can be defined and will be replaced with given value by the core. Usage: "$(MyMacroName)/file.abc" -> "MyValue/file.abc"
+# Macros are substituted forwardly by key name order (use with care), otherwise stay untouched: A = B; C = $(A) -> $(C) is B
+
+DemoSound = WelcomeToVA.wav
+DefaultHRIR = ITA_Artificial_Head_5x5_44kHz_128.v17.ir.daff
+HumanDir = Singer.v17.ms.daff
+Trumpet = Trumpet1.v17.ms.daff
+
+# Define some other macros (examples)
+ProjectName = MyVirtualAcousticsProject
+
+
+[Debug]
+
+# Set log level: 0 = quiet; 1 = errors; 2 = warnings; 3 = info (default); 4 = verbose; 5 = trace;
+LogLevel = @ITA_VACORE_DEFAULT_DEBUG_LEVEL@
+
+# Controls the core update rate for pushed events (like level meters)
+TriggerUpdateMilliseconds = 100
+
+[Audio driver]
+
+# MANDATORY: Audio driver backend (ASIO|Portaudio|Virtual)
+#Driver = Virtual
+#Driver = ASIO
+Driver = Portaudio
+
+# MANDATORY: Audio device ( e.g. ASIO4ALL v2, ASIO Hammerfall DSP, Portaudio 'default', 0,1,2,3,..., virtual user 'Trigger' )
+#Device = ASIO4ALL v2
+#Device = ASIO Hammerfall DSP
+#Device = ASIO Fireface USB
+#Device = ASIO MADIface USB
+#Device = Focusrite USB 2.0 Audio Driver
+#Device = M-Audio Fast Track Ultra ASIO
+#Device = Yamaha Steinberg USB ASIO
+Device = default
+#Device = Trigger
+
+# MANDATORY: Sampling rate [Hz]
+Samplerate = 44100
+
+# OPTIONAL: Buffer size / block length used for audio streaming [Samples]
+# AUTO will determine the buffer size from the audio device automatically [recommended, set in sound card driver configuration]
+# Note: Adjust this to your latency requirements
+BufferSize = AUTO
+
+# Define number of output channels manually (e.g. for virtual device)
+OutputChannels = AUTO
+
+# Record device input and store to hard drive (will record every input channel)
+RecordInputEnabled = false
+RecordInputFileName = device_in.wav
+RecordInputBaseFolder = recordings/$(ProjectName)/device
+
+# Record device output and store to hard drive (will record every output channel)
+RecordOutputEnabled = false
+RecordOutputFileName = device_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/device
+
+
+[Calibration]
+
+# The amplitude calibration mode either sets the internal conversion from
+# sound pressure to an electrical or digital amplitude signal (audio stream)
+# to 94dB (default) or to 124dB. The rendering modules will use this calibration
+# mode to calculate from physical values to an amplitude that can be forwarded
+# to the reproduction modules. If a reproduction module operates in calibrated
+# mode, the resulting physical sound pressure at receiver location can be maintained.
+DefaultAmplitudeCalibrationMode = 94dB
+
+# Set the minimum allowed distance (m) to a sound source (point source can get infinitely loud).
+# This can also be used if sound sources appear too loud near-by, but in the limiting range this
+# rendering will not be physically correct.
+DefaultMinimumDistance = 0.25
+
+# The default distance is used when spherical spreading is deactivated
+DefaultDistance = 2.0
+
+
+[HomogeneousMedium]
+
+DefaultSoundSpeed = 344.0 # m/s
+DefaultStaticPressure = 101125.0 # [Pa]
+DefaultTemperature = 20.0 # [Degree centigrade]
+DefaultRelativeHumidity = 20.0 # [Percent]
+DefaultShiftSpeed = 0.0, 0.0, 0.0 # 3D vector in m/s
+
+
+# --= AUDIO RENDERING =--
+# -----------------------
+
+# --- Free-field scenarios ---
+
+[Renderer:MyBinauralFreeField]
+Description = Basic renderer applying HRIRs, source directivities and free-field propagation effects
+Class = FreeField
+Enabled = true
+Reproductions = MyTalkthroughHeadphones
+RecordOutputEnabled = false
+RecordOutputFileName = binaural_renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/freefield
+SpatialEncodingType = Binaural
+HRIRFilterLength = 256
+VDLSwitchingAlgorithm = cubicspline
+FilterBankType = iir
+
+[Renderer:MyAmbisonicsFreeField]
+Description = Applies source directivities and free-field propagation effects creating an ambisonics-encoded signal
+Class = FreeField
+Enabled = false
+Reproductions = MyAmbisonics, MyAmbisonicsBinauralMixdown
+RecordOutputEnabled = false
+RecordOutputFileName = ambisonics_renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/freefield
+SpatialEncodingType = Ambisonics
+AmbisonicsOrder = 2
+VDLSwitchingAlgorithm = cubicspline
+FilterBankType = iir
+
+[Renderer:MyVBAPFreefield]
+Description = Applies source directivities and free-field propagation effects creating a N-channel VBAP signal for a given loudspeaker setup
+Class = FreeField
+Enabled = false
+Reproductions = MixdownHeadphones
+VBAPLoudspeakerSetup = VRLAB_LS_ALL
+VBAPCenterPos = 0, 1.34, 0
+VBAPTriangulationFile = VASetup.VRLab.Triangulation.ini
+MDAPNumSpreadingSources = 0
+MDAPSpreadingAngleDegrees = 0
+FilterBankType = IIR
+ReproductionCenterPos = 0,0,0
+
+# --- Generic scenarios ---
+
+[Renderer:MyAmbientMixer]
+Description = Routes N-channel signals from a source to the output, only applying a sound source power
+class = AmbientMixer
+Enabled = false
+Reproductions = MyAmbisonicsBinauralMixdown
+# OutputGroup = MyDesktopHP
+NumChannels = 9
+SignalSourceMixingEnabled = true
+SamplerEnabled = false
+
+[Renderer:MyGenericRenderer]
+Description = Convolution engine that allows user to specify a N-channel IR and a delay for each source-receiver pair. Otherwise only applies sound source power.
+Class = GenericFIR
+Enabled = false
+Reproductions = MyTalkthroughHeadphones
+NumChannels = 2
+IRFilterLengthSamples = 88200
+RecordOutputEnabled = false
+RecordOutputFileName = renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/prototype/generic
+
+# --- Room acoustic scenarios ---
+
+[Renderer:MyBinauralArtificialReverb]
+Description = Creates artificial reverberation for a scene using based on BRIRs from parametric room information, like volume, surface area and reverberation time
+Class = BinauralArtificialReverb
+Enabled = false
+Reproductions = MyTalkthroughHeadphones
+# Configuration options: enter either three reverb times (low, mid, high) or 8 values (octave bands)
+ReverberationTimes = 1, 0.71, 0.3
+RoomVolume = 200
+RoomSurfaceArea = 220
+MaxReverbFilterLengthSamples = 88200
+PositionThreshold = 1.0
+AngleThresholdDegree = 30
+SoundPowerCorrectionFactor = 0.05
+TimeSlotResolution = 0.005
+MaxReflectionDensity = 12000.0
+ScatteringCoefficient = 0.15
+
+[Renderer:MyBinauralRoomAcoustics]
+Description = Convolves RIRs based on room acoustic simulations (e.g. RAVEN). The simulations are scheduled in a separate thread.
+Class = RoomAcoustics
+Enabled = false
+# Set ConvolverLengthSamples high enogugh to use the entire RIR.
+ConvolverLengthSamples = 44100
+Reproductions = MyTalkthroughHeadphones
+SimulationConfigFilePath = VASimulationRAVEN.json
+
+[Renderer:MyImageSourceRenderer]
+Description = Shoebox-room renderer based on the image source method
+Class = PrototypeImageSource
+Enabled = false
+Reproductions = MyTalkthroughHeadphones
+NumChannels = 2
+RoomLength = 5
+RoomWidth = 5
+RoomHeight = 5
+MaxOrder = 2
+Betax1 = 0.1
+Betax2 = 0.1
+Betay1 = 0.1
+Betay2 = 0.1
+Betaz1 = 0.1
+Betaz2 = 0.1
+DirectSound = true
+HRIRFilterLength = 256
+IRFilterLengthSamples = 88200
+OutputMonitoring = true
+RecordOutputEnabled = false
+RecordOutputFileName = renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/prototype/imagemodel
+
+# --- Outdoor scenarios ---
+
+[Renderer:MyAirTrafficNoiseRenderer]
+Description = Designed for aircraft flyovers. Considers direct sound and reflection at a flat ground. Either uses a homogeneous (= straight paths) or a inhomogeneous medium (= curved paths simulated using ART framework). Allows to generate binaural or ambisonics-encoded signals.
+Class = AirTrafficNoise
+Enabled = false
+Reproductions = MyTalkthroughHeadphones
+SpatialEncodingType = Binaural
+HRIRFilterLength = 256
+#Reproductions = MyAmbisonics, MyAmbisonicsBinauralMixdown
+#SpatialEncodingType = Ambisonics
+#AmbisonicsOrder = 4
+VDLSwitchingAlgorithm = cubicspline
+FilterBankType = iir_biquads_order10
+MediumType = homogeneous
+#MediumType = inhomogeneous
+#StratifiedAtmosphereFilepath = atmosphere.json
+RecordOutputEnabled = false
+RecordOutputFileName = binaural_renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/airtrafficnoise
+
+[Renderer:MyBinauralClustering]
+Description = Renderer clustering free-field wave fronts for efficient binaural processing of many paths
+Enabled = false
+Class = BinauralClustering
+Reproductions = MyTalkthroughHeadphones
+RecordOutputEnabled = false
+RecordOutputFileName = renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/binaural/clustering
+HRIRFilterLength = 256
+MotionModelNumHistoryKeys = 10000
+MotionModelWindowSize = 0.4
+MotionModelWindowDelay = 0.2
+VDLSwitchingAlgorithm = linear
+NumClusters = 12
+AngularDistanceThreshold = 0.33
+
+[Renderer:MyBinauralOutdoorUrban]
+Description = Outdoor (urban) renderer with homogeneous atmosphere using deterministic reflection and diffraction simulation
+Enabled = false
+Class = BinauralOutdoorNoise
+Reproductions = MyTalkthroughHeadphones
+RecordOutputEnabled = true
+RecordOutputFileName = renderer_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/renderer/binaural/outdoor/urban
+HRIRFilterLength = 128
+VDLSwitchingAlgorithm = linear
+NumClusters = 20
+AngularDistanceThreshold = 3.0
+# SimulationConfigFilePath = VASimulationUrban.json
+
+# --- Experimental renderers ---
+
+[Renderer:MyPrototypeFreeField]
+Class = PrototypeFreeField
+Enabled = false
+Reproductions = MyTalkthroughHeadphones
+MotionModelNumHistoryKeys = 10000
+MotionModelWindowSize = 0.1
+MotionModelWindowDelay = 0.1
+VDLSwitchingAlgorithm = linear
+FilterBankType = IIR
+
+# This renderer is not included in the official install of VA
+[Renderer:MyHearingAidRenderer]
+Class = PrototypeHearingAid
+Enabled = false
+Reproductions = HearingAidTalkthrough
+#Reproductions = MyTalkthroughHeadphones
+UpdateRateDS = 120.0
+UpdateRateIS = 20.0
+UpdateRateRT = 1.0
+RenderingGain = 1.0
+RenderingDelayInMs = 10.0
+HRIRFilterLength = 256
+# Dump individual listener signals
+DumpListeners = false
+# Gain for listener dumping [Factor]
+DumpListenersGain = 10
+FilterBankType = IIR
+
+
+# --= Audio reproduction =--
+# --------------------------
+# Here you write down the audio reproduction modules that are created after VA starts.
+# Each section has the format [Reproduction:<ID>] (<ID> must be unique and is freely chooseable).
+
+[Reproduction:MyTalkthroughHeadphones]
+Class = Talkthrough
+Enabled = true
+Name = Generic talkthrough to output group
+Outputs = MyDesktopHP
+InputDetectorEnabled = false
+OutputDetectorEnabled = false
+RecordInputEnabled = false
+RecordInputFileName = reproduction_in.wav
+RecordInputBaseFolder = recordings/$(ProjectName)/reproduction/MyTalkthroughHeadphones
+RecordOutputEnabled = false
+RecordOutputFileName = reproduction_out.wav
+RecordOutputBaseFolder = recordings/$(ProjectName)/reproduction/MyTalkthroughHeadphones
+
+[Reproduction:MySubwooferMixer]
+Class = LowFrequencyMixer 
+Enabled = false
+Name = Generic low frequency (subwoofer) loudspeaker mixer
+Outputs = Cave_SW
+MixingChannels = ALL
+
+[Reproduction:MyHD600]
+Class = Headphones
+Enabled = false
+# Headphone impulse response inverse file path (normalized)
+HpIRInvFile = HPEQ/HD600_all_eq_128_stereo.wav
+#HpIRInvFilterLength = 22050
+# Headphone impulse response inverse gain for calibration ( HpIR * HpIRInv == 0dB )
+HpIRInvCalibrationGainDecibel = 0.1
+Name = Equalized Sennheiser HD600 headphones
+Outputs = MyDesktopHP
+
+[Reproduction:MyNCTC]
+Class = NCTC
+Enabled = false
+Name = Crosstalk cancellation for N loudspeaker
+Outputs = MyDesktopLS
+TrackedListenerID = 1
+# algorithm: reg|...
+Algorithm = reg
+RegularizationBeta = 0.01
+CTCFilterLength = 4096
+DelaySamples = 2048
+UseTrackedListenerHRIR = false
+CTCDefaultHRIR = $(DefaultHRIR)
+Optimization = OPTIMIZATION_NONE
+
+[Reproduction:MyAmbisonics]
+Class = Ambisonics
+Enabled = false
+Name = (Higher-Order) Ambisonics
+Outputs = VRLAB_LS_HORIZONTAL
+TruncationOrder = 2
+ReproductionCenterPos = AUTO
+
+[Reproduction:MyAmbisonicsBinauralMixdown]
+Class = AmbisonicsBinauralMixdown
+Enabled = false
+Name = Higher-Order Ambisonics dynamic binaural downmix renderer
+HRIRFilterLength = 256
+VirtualOutput = HOAIdeal
+Outputs = MyDesktopHP
+TruncationOrder = 2
+ReproductionCenterPos = 0,0,0
+HRIR = $(DefaultHRIR)
+#HRIR= HRIR/MyDaffv17HRTF.daff
+TrackedListenerID = 1
+TrackingDelaySeconds = 0
+
+[Reproduction:MyMixdownHeadphones]
+Class = BinauralMixdown
+Enabled = false
+Name = Binaural mixdown of virtual loudspeaker setup using HRIR techniques
+Outputs = MyDesktopHP
+VirtualOutput = MyDesktopLS
+TrackedListenerID = 1
+HRIRFilterLength = 256
+
+[Reproduction:HearingAidTalkthrough]
+Class = Talkthrough
+Enabled = false
+Name = Hearing aid takthrough
+Outputs = HearingAid
+
+
+[Setup]
+
+# hardware setup example for a desktop environment, usually more sophisticated
+# settings are outsourced to a VASetup.ini that is included in the 'Files' section
+
+# -- outputs
+
+[Output:MyDesktopHP]
+Description = Desktop user with headphones
+Devices = MyHP
+
+[Output:MyDesktopLS]
+Description = Desktop user with loudspeaker monitors
+Devices = MyLSLeft, MyLSRight
+
+
+# -- inputs
+
+[Input:MyDesktopMike]
+Description = Generic desktop microphone, i.e. from WebCam or Line-In
+Devices = MyLineIn
+
+
+# -- hardware devices
+
+[OutputDevice:MyHP]
+Type = HP
+Description = Headphone hardware device (two-channels)
+Channels = 1,2
+
+[OutputDevice:MyLSLeft]
+Type = LS
+Description = Loudspeaker hardware device
+Channels = 1
+Position = -0.5, 0.2, -0.4
+
+[OutputDevice:MyLSRight]
+Type = LS
+Description = Loudspeaker hardware device
+Channels = 2
+Position = 0.5, 0.2, -0.4
+
+[InputDevice:MyLineIn]
+Type = MIC
+Description = Table microphone in front of user using line-in
+Position = 0, -0.3, 0.2
+Channels = 1

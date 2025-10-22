@@ -1,0 +1,8 @@
+CMakeSettings.json
+MANIFEST
+build
+dist
+*.egg-info
+examples/jupyter/*.ipynb_checkpoints*
+*.wav
+*.daff

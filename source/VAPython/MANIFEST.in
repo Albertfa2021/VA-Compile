@@ -1,0 +1,4 @@
+include README.md LICENSE.md
+include src/*.hpp
+include src/*.cpp
+recursive-include tests *

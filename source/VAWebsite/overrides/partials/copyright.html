@@ -1,0 +1,16 @@
+<div class="md-copyright">
+    <span class="center" style="stroke: var(--md-typeset-color);fill: var(--md-typeset-color);">
+      {% include "/assets/images/IHTA_logo.svg" %}
+    </span>
+    {% if config.copyright %}
+      <div class="md-copyright__highlight">
+        {{ config.copyright }}
+      </div>
+    {% endif %}
+    {% if not config.extra.generator == false %}
+      Made with
+      <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+        Material for MkDocs
+      </a>
+    {% endif %}
+  </div>

@@ -1,0 +1,159 @@
+.md-footer-meta__inner {
+  flex-direction : column;
+  text-align     : center;
+  justify-content: center;
+}
+
+.md-copyright {
+  text-align: center;
+}
+
+.grid-container {
+  --child-flex-basis: 15rem;
+  display           : flex;
+  flex-wrap         : wrap;
+  gap               : 1rem;
+  justify-content   : center;
+  align-items       : center;
+}
+
+.grid-container>* {
+  flex: 1 1 var(--child-flex-basis);
+}
+
+.grid-container__side {
+  flex: 1 1 5rem;
+}
+
+.image-circ-cropper {
+  object-fit   : cover;
+  border-radius: 50%;
+}
+
+.bkg-svg-container {
+  width   : 100%;
+  height  : 100%;
+  position: absolute;
+  top     : 0;
+  left    : 0;
+  z-index : -10;
+}
+
+.md-typeset hr {
+  border-bottom-width: 0.1rem;
+  margin-inline      : 5%;
+}
+
+.md-tabs {
+  overflow: visible;
+}
+
+.md-tabs__list {
+  contain: layout;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown__title {
+  display    : inline-flex;
+  align-items: center;
+}
+
+.dropdown__emoji {
+  fill      : currentcolor;
+  max-height: 100%;
+  width     : 1.5em
+}
+
+.dropdown .dropdown__menu {
+  list-style      : none;
+  position        : absolute;
+  min-width       : 15ch;
+  left            : 50%;
+  top             : calc(100% - 0.25rem);
+  transition      : 280ms all ease-out;
+  transform       : rotateX(-90deg) translateX(-50%);
+  transform-origin: top center;
+  visibility      : hidden;
+  opacity         : 0.3;
+  padding         : 0.5em 0;
+  background-color: var(--md-default-bg-color);
+  border-radius   : 4px;
+  box-shadow      : 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+.dropdown .dropdown__menu a {
+  color  : var(--md-default-fg-color);
+  display: block;
+  padding: 0.5em 1em;
+}
+
+.dropdown:hover .dropdown__menu,
+.dropdown:focus-within .dropdown__menu {
+  opacity   : 1;
+  transform : rotateX(0) translateX(-50%);
+  visibility: visible;
+}
+
+.dropdown__item {
+  text-decoration: none;
+  display        : inline-block;
+  font-size      : .7rem;
+}
+
+.dropdown__item:focus {
+  outline         : none;
+  background-color: var(--md-default-fg-color--lightest);
+}
+
+.dropdown__item:hover {
+  background-color: var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .accent-hr {
+  margin-inline      : 30%;
+  border-color       : var(--md-primary-fg-color);
+  border-bottom-width: 0.2rem;
+}
+
+.md-typeset .headerlink {
+  position: absolute;
+}
+
+.table-column {
+  width: 8rem;
+}
+
+.tile-container {
+  display              : grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-auto-rows       : 1fr;
+  gap                  : 1rem;
+  text-align           : center;
+  justify-items        : center;
+  align-self           : center;
+}
+
+.simple-tile {
+  aspect-ratio    : 1;
+  background-color: var(--md-accent-bg-color);
+  border-radius   : 15px;
+  padding         : 1rem;
+  display         : flex;
+  flex-direction  : column;
+  text-align      : center;
+}
+
+.simple-tile>* {
+  flex       : 1 1 1rem;
+  display    : flex;
+  align-items: center;
+  text-align : center;
+  margin     : auto;
+}
+
+.simple-tile:hover>p>.twemoji {
+  color: var(--md-accent-fg-color);
+}

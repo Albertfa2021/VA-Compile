@@ -1,0 +1,87 @@
+[data-md-color-scheme="oldVA"] {
+
+    --md-text-font: "Roboto";
+    --md-code-font: "Courier New";
+
+    /* Default color shades */
+    --md-default-fg-color          : #ffffff;
+    --md-default-fg-color--light   : rgba(255, 255, 255, 0.75);
+    --md-default-fg-color--lighter : rgba(255, 255, 255, 0.5);
+    --md-default-fg-color--lightest: rgba(255, 255, 255, 0.15);
+    --md-default-bg-color          : #1c1d26;
+    --md-default-bg-color--light   : rgba(23, 24, 32, 0.95);
+    --md-default-bg-color--lighter : rgba(23, 24, 32, 0.5);
+    --md-default-bg-color--lightest: rgba(23, 24, 32, 0.20);
+
+    /* Primary color shades */
+    --md-primary-fg-color       : #e44c65;
+    --md-primary-fg-color--light: #e44c65;
+    --md-primary-fg-color--dark : #e44c65;
+    --md-primary-bg-color       : hsla(0, 0%, 100%, 1);
+    --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
+
+
+    /* Accent color shades */
+    --md-accent-fg-color             : #e44c65;
+    --md-accent-fg-color--transparent: rgba(228, 76, 101, 0.1);
+    --md-accent-bg-color             : #272833;
+    --md-accent-bg-color--light      : rgba(39,40,51,0.965);
+
+    /* // Code color shades */
+    --md-code-fg-color: var(--md-default-fg-color);
+    --md-code-bg-color: var(--md-default-fg-color--lightest);
+
+    /* // Code highlighting color shades */
+    --md-code-hl-color            : hsla(350, 74%, 60%, 0.15);
+    --md-code-hl-number-color     : hsla(6, 74%, 63%, 1);
+    --md-code-hl-special-color    : hsla(340, 83%, 66%, 1);
+    --md-code-hl-function-color   : hsla(291, 57%, 65%, 1);
+    --md-code-hl-constant-color   : hsla(250, 62%, 70%, 1);
+    --md-code-hl-keyword-color    : hsla(219, 66%, 64%, 1);
+    --md-code-hl-string-color     : hsla(150, 58%, 44%, 1);
+    --md-code-hl-name-color       : var(--md-code-fg-color);
+    --md-code-hl-operator-color   : var(--md-default-fg-color--light);
+    --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+    --md-code-hl-comment-color    : var(--md-default-fg-color--light);
+    --md-code-hl-generic-color    : var(--md-default-fg-color--light);
+    --md-code-hl-variable-color   : var(--md-default-fg-color--light);
+
+    /* // Typeset color shades */
+    --md-typeset-color: var(--md-default-fg-color);
+
+    /* // Typeset `a` color shades */
+    --md-typeset-a-color: var(--md-primary-fg-color);
+
+    /* // Typeset `mark` color shades */
+    --md-typeset-mark-color: hsla(340, 83%, 66%, 0.3);
+
+    /* // Footer color shades */
+    --md-footer-bg-color      : rgba(0, 0, 0, 0.87);
+    --md-footer-bg-color--dark: rgba(0, 0, 0, 1);
+
+    --md-typeset-table-color : var(--md-default-fg-color--lighter)
+}
+
+[data-md-color-scheme="oldVA"] .md-button {
+    color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="oldVA"] .md-header {
+    background-color: var(--md-accent-bg-color);
+}
+
+[data-md-color-scheme="oldVA"] .md-tabs {
+    background-color: var(--md-accent-bg-color);
+}
+
+[data-md-color-scheme="oldVA"] .md-nav--primary .md-nav__title[for="__drawer"] {
+    background-color: var(--md-accent-bg-color);
+}
+
+[data-md-color-scheme="oldVA"] .dropdown .dropdown__menu {
+    background-color: var(--md-accent-bg-color);
+}
+
+[data-md-color-scheme="oldVA"] .md-typeset {
+    font-weight: 100;
+}

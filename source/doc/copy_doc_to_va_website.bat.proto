@@ -1,0 +1,2 @@
+mkdir "@VAWEBSITE_DIR@/resources/v@VA_VERSION_MAJOR@@VA_RELEASE_LETTER@/doc/html"
+copy "@CMAKE_CURRENT_BINARY_DIR@/html" "@VAWEBSITE_DIR@/resources/v@VA_VERSION_MAJOR@@VA_RELEASE_LETTER@/doc/html"

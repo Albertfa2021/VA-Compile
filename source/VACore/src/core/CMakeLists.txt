@@ -1,0 +1,31 @@
+target_sources (
+	${PROJECT_NAME}
+	PRIVATE clock.cpp
+			config.cpp
+			control.cpp
+			core.h
+			core.cpp
+			directivity.cpp
+			events.cpp
+			file_handling.cpp
+			finalize.cpp
+			geometry.cpp
+			homogeneous_medium.cpp
+			initialize.cpp
+			locking.cpp
+			material.cpp
+			module.cpp
+			object.cpp
+			progress.cpp
+			rendering.cpp
+			reproduction.cpp
+			reset.cpp
+			scene.cpp
+			signal_source.cpp
+			sound_portal.cpp
+			sound_receiver.cpp
+			sound_source.cpp
+			state.cpp
+			thread_loop.cpp
+			version.cpp
+)

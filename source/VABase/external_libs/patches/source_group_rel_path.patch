@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2a948d5..ecb06c3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,7 +7,11 @@ function(GroupSourcesByFolder target)
+   get_target_property(sources ${target} SOURCES)
+ 
+   foreach(file ${sources})
+-    file(RELATIVE_PATH relative_file "${PROJECT_SOURCE_DIR}" ${file})
++    if(IS_ABSOLUTE ${file})
++      file(RELATIVE_PATH relative_file "${PROJECT_SOURCE_DIR}" ${file})
++    else()
++      set(relative_file ${file})
++    endif()
+     get_filename_component(dir "${relative_file}" PATH)
+     if(NOT "${dir}" STREQUAL "${last_dir}")
+       if(files)

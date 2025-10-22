@@ -1,0 +1,175 @@
+diff --git a/VistaCoreLibs/VistaAspects/VistaAspectsUtils.h b/VistaCoreLibs/VistaAspects/VistaAspectsUtils.h
+index 167c003a..773d895d 100644
+--- a/VistaCoreLibs/VistaAspects/VistaAspectsUtils.h
++++ b/VistaCoreLibs/VistaAspects/VistaAspectsUtils.h
+@@ -183,7 +183,7 @@ public:
+ 	};
+ 
+ 	template<class T>
+-	class ObjEqualsCompare : public std::unary_function< const T &, bool >
++	class ObjEqualsCompare //: public std::unary_function< const T &, bool >
+ 	{
+ 	public:
+ 		ObjEqualsCompare( const T &arg )
+diff --git a/VistaCoreLibs/VistaAspects/VistaObjectRegistry.cpp b/VistaCoreLibs/VistaAspects/VistaObjectRegistry.cpp
+index cd0907da..f2ec1490 100644
+--- a/VistaCoreLibs/VistaAspects/VistaObjectRegistry.cpp
++++ b/VistaCoreLibs/VistaAspects/VistaObjectRegistry.cpp
+@@ -35,7 +35,7 @@ using std::string;
+ /*============================================================================*/
+ namespace
+ {
+-	class _count : public std::unary_function<VistaObjectRegistry::value_type&,bool>
++	class _count //: public std::unary_function<VistaObjectRegistry::value_type&,bool>
+ 	{
+ 	public:
+ 		_count( const std::string &strName )
+diff --git a/VistaCoreLibs/VistaBase/VistaAutoBufferPool.cpp b/VistaCoreLibs/VistaBase/VistaAutoBufferPool.cpp
+index 25104383..5be8ee64 100644
+--- a/VistaCoreLibs/VistaBase/VistaAutoBufferPool.cpp
++++ b/VistaCoreLibs/VistaBase/VistaAutoBufferPool.cpp
+@@ -34,7 +34,7 @@
+ /*============================================================================*/
+ namespace
+ {
+-	class _findUnique : public std::unary_function<const VistaAutoWriteBuffer, bool>
++	class _findUnique //: public std::unary_function<const VistaAutoWriteBuffer, bool>
+ 	{
+ 	public:
+ 		bool operator()( const VistaAutoWriteBuffer &b ) const
+@@ -45,7 +45,7 @@ namespace
+ 	};
+ 
+ #ifdef DEBUG
+-	class _checkCount : public std::unary_function<const VistaAutoWriteBuffer, void>
++	class _checkCount //: public std::unary_function<const VistaAutoWriteBuffer, void>
+ 	{
+ 	public:
+ 		void operator()( const VistaAutoWriteBuffer &b ) const
+diff --git a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutJoystickDriver/VistaGlutJoystickDriver.cpp b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutJoystickDriver/VistaGlutJoystickDriver.cpp
+index a6f9fa11..60ba6511 100644
+--- a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutJoystickDriver/VistaGlutJoystickDriver.cpp
++++ b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutJoystickDriver/VistaGlutJoystickDriver.cpp
+@@ -211,7 +211,7 @@ public:
+ 	typedef std::map<VistaDriverAbstractWindowAspect::NativeWindowHandle*, int> WINMAP;
+ 
+ 
+-	class _copyIn : public std::unary_function< const WINMAP::value_type &, void>
++	class _copyIn //: public std::unary_function< const WINMAP::value_type &, void>
+ 	{
+ 	public:
+ 		_copyIn( std::list<VistaDriverAbstractWindowAspect::IWindowHandle*> &list )
+diff --git a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutKeyboardDriver/VistaGlutKeyboardDriver.cpp b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutKeyboardDriver/VistaGlutKeyboardDriver.cpp
+index ae2447fc..85ff356a 100644
+--- a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutKeyboardDriver/VistaGlutKeyboardDriver.cpp
++++ b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutKeyboardDriver/VistaGlutKeyboardDriver.cpp
+@@ -379,7 +379,7 @@ public:
+ 
+ 	typedef std::map<VistaDriverAbstractWindowAspect::IWindowHandle*, int> WINMAP;
+ 
+-	class _copyIn : public std::unary_function< const WINMAP::value_type &, void>
++	class _copyIn //: public std::unary_function< const WINMAP::value_type &, void>
+ 	{
+ 	public:
+ 		_copyIn( std::list<VistaDriverAbstractWindowAspect::IWindowHandle*> &list )
+diff --git a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutMouseDriver/VistaGlutMouseDriver.cpp b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutMouseDriver/VistaGlutMouseDriver.cpp
+index e38f48ce..73e8c529 100644
+--- a/VistaCoreLibs/VistaDeviceDrivers/VistaGlutMouseDriver/VistaGlutMouseDriver.cpp
++++ b/VistaCoreLibs/VistaDeviceDrivers/VistaGlutMouseDriver/VistaGlutMouseDriver.cpp
+@@ -371,7 +371,7 @@ public:
+ 	typedef std::map<VistaDriverAbstractWindowAspect::IWindowHandle*, int> WINMAP;
+ 
+ 
+-	class _copyIn : public std::unary_function< const WINMAP::value_type &, void>
++	class _copyIn //: public std::unary_function< const WINMAP::value_type &, void>
+ 	{
+ 	public:
+ 		_copyIn( std::list<VistaDriverAbstractWindowAspect::IWindowHandle*> &list )
+diff --git a/VistaCoreLibs/VistaDeviceDrivers/VistaVRPNDriver/VistaVRPNDriver.cpp b/VistaCoreLibs/VistaDeviceDrivers/VistaVRPNDriver/VistaVRPNDriver.cpp
+index be4cb4cc..6d7f19a9 100644
+--- a/VistaCoreLibs/VistaDeviceDrivers/VistaVRPNDriver/VistaVRPNDriver.cpp
++++ b/VistaCoreLibs/VistaDeviceDrivers/VistaVRPNDriver/VistaVRPNDriver.cpp
+@@ -218,7 +218,7 @@ namespace
+ 	 * for the vrpn_BaseObject. This should result in a number of "pushes"
+ 	 * to the sensor
+ 	 */
+-	class _cPollVrpn : public std::unary_function<bool, VistaVRPNDriver::_cVRPN2SensorMap>
++	class _cPollVrpn //: public std::unary_function<bool, VistaVRPNDriver::_cVRPN2SensorMap>
+ 	{
+ 	public:
+ 		_cPollVrpn(VistaType::microtime nUpdateTime)
+@@ -255,7 +255,7 @@ namespace
+  * to work, as currently there is no other way to connect to the VRPN
+  * service for each sensor.
+  */
+-class _cSetupFunctor : public std::unary_function<void, unsigned int>
++class _cSetupFunctor //: public std::unary_function<void, unsigned int>
+ {
+ public:
+ 	_cSetupFunctor(VistaVRPNDriver *pDriver,
+diff --git a/VistaCoreLibs/VistaDeviceDriversBase/DriverAspects/VistaDriverAbstractWindowAspect.cpp b/VistaCoreLibs/VistaDeviceDriversBase/DriverAspects/VistaDriverAbstractWindowAspect.cpp
+index 930fd33a..21122b22 100644
+--- a/VistaCoreLibs/VistaDeviceDriversBase/DriverAspects/VistaDriverAbstractWindowAspect.cpp
++++ b/VistaCoreLibs/VistaDeviceDriversBase/DriverAspects/VistaDriverAbstractWindowAspect.cpp
+@@ -32,7 +32,7 @@
+ namespace
+ {
+ 	template<class Pred>
+-	class _find_by_id : public std::unary_function< const VistaDriverAbstractWindowAspect::IWindowHandle&, bool>
++	class _find_by_id //: public std::unary_function< const VistaDriverAbstractWindowAspect::IWindowHandle&, bool>
+ 	{
+ 	public:
+ 		_find_by_id( Pred id )
+diff --git a/VistaCoreLibs/VistaDeviceDriversBase/VistaDeviceDriver.h b/VistaCoreLibs/VistaDeviceDriversBase/VistaDeviceDriver.h
+index 2fc2ec4a..391b0a24 100644
+--- a/VistaCoreLibs/VistaDeviceDriversBase/VistaDeviceDriver.h
++++ b/VistaCoreLibs/VistaDeviceDriversBase/VistaDeviceDriver.h
+@@ -171,7 +171,7 @@ public:
+ 	static size_t UNKNOWN_SIZE;
+ 	static VistaType::microtime UNKNOWN_ACCESS_DURATION;
+ 
+-	class VISTADEVICEDRIVERSAPI AllocMemoryFunctor : public std::unary_function< VistaSensorMeasure &, void >
++	class VISTADEVICEDRIVERSAPI AllocMemoryFunctor //: public std::unary_function< VistaSensorMeasure &, void >
+ 	{
+ 	public:
+ 		virtual ~AllocMemoryFunctor() {}
+@@ -186,7 +186,7 @@ public:
+ 	};
+ 
+ 
+-	class VISTADEVICEDRIVERSAPI ClaimMemoryFunctor : public std::unary_function< VistaSensorMeasure &, void >
++	class VISTADEVICEDRIVERSAPI ClaimMemoryFunctor //: public std::unary_function< VistaSensorMeasure &, void >
+ 	{
+ 	public:
+ 		virtual ~ClaimMemoryFunctor() {}
+@@ -703,7 +703,7 @@ public:
+ 	/**
+ 	 * @brief little helper class to unregister and delete transcoder factories
+ 	 */
+-	class _unregisterAndDeleteTranscoderFac : public std::unary_function<const std::string, void>
++	class _unregisterAndDeleteTranscoderFac //: public std::unary_function<const std::string, void>
+ 	{
+ 	public:
+ 		_unregisterAndDeleteTranscoderFac( IVistaDriverCreationMethod *crm )
+diff --git a/VistaCoreLibs/VistaDeviceDriversBase/VistaDriverManager.cpp b/VistaCoreLibs/VistaDeviceDriversBase/VistaDriverManager.cpp
+index 9d0bef75..7041bafc 100644
+--- a/VistaCoreLibs/VistaDeviceDriversBase/VistaDriverManager.cpp
++++ b/VistaCoreLibs/VistaDeviceDriversBase/VistaDriverManager.cpp
+@@ -86,7 +86,7 @@ namespace
+ 		int m_nMsecsSleep;
+ 	};
+ 
+-	class _connectDriver : public std::unary_function< std::pair<std::string, IVistaDeviceDriver*>, void>
++	class _connectDriver //: public std::unary_function< std::pair<std::string, IVistaDeviceDriver*>, void>
+ 	{
+ 	public:
+ 		void operator()( std::pair< std::string, IVistaDeviceDriver*> driver ) const
+@@ -97,7 +97,7 @@ namespace
+ 		}
+ 	};
+ 
+-	class _disconnectDriver : public std::unary_function< std::pair<std::string, IVistaDeviceDriver*>, void>
++	class _disconnectDriver //: public std::unary_function< std::pair<std::string, IVistaDeviceDriver*>, void>
+ 	{
+ 	public:
+ 		void operator()( std::pair< std::string, IVistaDeviceDriver*> driver ) const
