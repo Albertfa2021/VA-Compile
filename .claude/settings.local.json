@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(taskkill:*)",
+      "Bash(taskkill //F //IM link.exe //T)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
